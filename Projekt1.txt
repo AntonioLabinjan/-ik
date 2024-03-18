@@ -1,0 +1,343 @@
+Nastanak QR kodova:
+QR kodovi su nastali 1994. godine u Japanu, gdje su razvijeni od strane tvrtke Denso Wave, podružnice tvrtke Toyota.
+Razvijeni su s ciljem poboljšanja brzine i učinkovitosti skeniranja informacija u proizvodnom procesu automobila.
+Kako rade:
+QR kodovi su dvodimenzionalni barkodovi koji mogu sadržavati različite vrste informacija, poput teksta, URL-a, kontaktnih podataka ili binarnih podataka.
+Rade putem vizualne interpretacije crnih kvadrata i bijelih prostora u kodu.
+Kada se QR kod skenira pomoću odgovarajuće aplikacije ili uređaja, podaci se očitavaju i mogu se prikazati korisniku ili koristiti u aplikaciji.
+Mogući problemi u prijenosu informacija:
+Oštećenja QR koda mogu uzrokovati nemogućnost ili netočno čitanje informacija.
+Loša osvijetljenost ili nejasna kvaliteta tiska također može otežati ili onemogućiti skeniranje.
+Pogrešno dekodiranje ili neispravno interpretiranje informacija može se dogoditi ako QR kod sadrži greške ili ako je interpretacija softvera neprecizna.
+Kako ih možemo kreirati:
+Postoji mnogo besplatnih alata i online servisa koji omogućavaju generiranje QR kodova.
+Obično je potrebno samo odabrati vrstu informacije koju želite sadržavati u QR kodu, unijeti potrebne podatke, a zatim generirati kod.
+Možete prilagoditi izgled QR koda, kao što su boje i stilovi, ovisno o svrsi ili estetici.
+
+
+Matematička pozadina:
+QR kodovi su konstruirani pomoću matematičkih algoritama koji omogućuju pouzdanu detekciju i dekodiranje podataka.
+Kvadratna struktura QR koda omogućuje da se podaci pohrane u dvodimenzionalnom prostoru.
+Algoritmi poput Reed-Solomon kodiranja koriste se za detekciju i ispravljanje pogrešaka pri čitanju koda.
+QR kodovi koriste različite matematičke tehnike poput binarne aritmetike, modularne aritmetike i Galoisovih polja za generiranje i interpretaciju podataka.
+Kriptografska pozadina:
+Iako QR kodovi nisu nužno kriptografski alati, mogu se koristiti u kombinaciji s kriptografskim metodama za sigurnost podataka.
+Primjerice, QR kodovi mogu sadržavati URL-ove koji vode do sigurnih web stranica s HTTPS protokolom ili mogu sadržavati enkriptirane podatke.
+Zaštita privatnosti može se postići korištenjem QR kodova s ograničenim vijekom trajanja ili jednokratnim QR kodovima koji se automatski uništavaju nakon upotrebe.
+Programerska pozadina:
+Programski alati i biblioteke omogućuju generiranje, skeniranje i obradu QR kodova.
+Programski jezici poput Pythona, JavaScripta, Java-e, C# i mnogi drugi imaju biblioteke za rad s QR kodovima.
+Algoritmi za generiranje QR kodova uključuju kodiranje podataka, stvaranje različitih verzija QR koda ovisno o veličini podataka i generiranje kontrolnih suma za detekciju grešaka.
+Za skeniranje QR kodova koriste se algoritmi obrade slika poput detekcije rubova, analize kontrasta i interpretacije oblika kako bi se prepoznali kvadrati i prostori unutar QR koda.
+
+Programski primjer u Pythonu:
+import qrcode
+
+def generiraj_qr_kod(tekst, naziv_datoteke):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(tekst)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.save(naziv_datoteke)
+
+if __name__ == "__main__":
+    uneseni_tekst = input("Unesite tekst koji želite pretvoriti u QR kod: ")
+    naziv_datoteke = input("Unesite naziv datoteke za spremanje QR koda (npr. moj_qr_kod.png): ")
+    generiraj_qr_kod(uneseni_tekst, naziv_datoteke)
+    print(f"QR kod je uspješno spremljen u datoteku {naziv_datoteke}")
+
+Potencijalni problemi s QR kodovima (greške):
+
+Greške u pretvorbi informacija:
+Prilikom skeniranja QR koda, softver za dekodiranje može pogrešno interpretirati informacije, osobito ako QR kod sadrži greške.
+Greške se mogu dogoditi zbog loše kvalitete ispisa, oštećenja ili loših uvjeta okoline.
+Oštećenja i nejasnoće:
+Fizička oštećenja QR koda, poput ogrebotina ili deformacija, mogu otežati ili onemogućiti ispravno skeniranje.
+"Šum" u pozadini slike ili nejasna kvaliteta tiska također mogu uzrokovati poteškoće u skeniranju QR koda.
+Slaba osvjetljenost i kut gledanja:
+QR kodovi mogu biti teško skenirati u uvjetima slabe osvjetljenosti, što može otežati ili onemogućiti čitanje.
+Kut gledanja također može utjecati na uspješnost skeniranja, pa je važno prilagoditi poziciju skenera kako bi se postigao optimalan kut gledanja.
+Različiti standardi i formate:
+Postoji više verzija QR kodova, svaka s različitim kapacitetima za pohranu podataka.
+Neki skeneri možda ne podržavaju sve formate QR kodova, što može rezultirati nečitanjem određenih tipova QR kodova.
+Sigurnosni problemi:
+QR kodovi mogu biti zloupotrijebljeni za preusmjeravanje korisnika na zlonamjerne web stranice ili za distribuciju zlonamjernog softvera.
+Krajnji korisnici trebaju biti oprezni prilikom skeniranja QR kodova s nepoznatih izvora ili u sumnjivim okolnostima.
+
+
+Usporedba između običnih barkodova i QR kodova otkriva nekoliko ključnih razlika u njihovoj konstrukciji, sposobnostima i upotrebi. Evo detaljnog pregleda:
+
+Povijest:
+Barkodovi su prvi put komercijalno upotrijebljeni 1974. godine, a osmišljeni su za jednostavno označavanje proizvoda u maloprodaji.
+QR kodovi su nastali 1994. godine u Japanu, prvenstveno za potrebe automobilske industrije radi bržeg i učinkovitijeg praćenja dijelova i proizvodnih procesa.
+Konstrukcija:
+Obični barkodovi su jednodimenzionalni i sastoje se od crnih linija i prostora različite širine, koji sadrže binarne informacije.
+QR kodovi su dvodimenzionalni i sastoje se od crnih kvadrata i bijelih prostora unutar kvadratne matrice. Mogu sadržavati širok spektar informacija uključujući tekst, URL-ove, kontaktni podatci i još mnogo toga.
+Matematička pozadina:
+Obični barkodovi koriste sekvencu crnih linija i prostora koje čitači pretvaraju u binarne informacije pomoću algoritama za dekodiranje.
+QR kodovi koriste naprednije matematičke algoritme poput Reed-Solomon kodiranja za detekciju i korekciju grešaka. To omogućuje pouzdanije čitanje čak i ako su dio koda oštećen ili nedostaje.
+Kapacitet pohrane:
+Obični barkodovi imaju ograničen kapacitet pohrane podataka, obično do nekoliko stotina znakova.
+QR kodovi imaju znatno veći kapacitet pohrane podataka, što im omogućuje da sadrže tisuće znakova, ovisno o veličini i verziji QR koda.
+Prednosti QR kodova:
+Veći kapacitet pohrane podataka omogućuje QR kodovima da nose raznovrsnije informacije, uključujući URL-ove, kontaktne podatke, Wi-Fi mreže i još mnogo toga.
+QR kodovi imaju bolju otpornost na oštećenja i mogućnost detekcije i korekcije grešaka zahvaljujući naprednim matematičkim algoritmima.
+Prednosti barkodova:
+Obični barkodovi su široko prihvaćeni u maloprodajnom okruženju i lako se čitaju pomoću jeftinih čitača barkodova.
+Barkodovi su jednostavniji za dizajn i ispis na različitim površinama, kao što su ambalaža proizvoda.
+Manje mane QR kodova:
+QR kodovi mogu biti složeniji za skeniranje jer zahtijevaju specifične aplikacije ili uređaje koji podržavaju čitanje QR kodova.
+Veliki QR kodovi mogu zauzeti više prostora i mogu biti manje estetski privlačni na nekim vrstama ambalaže.
+Ukratko, dok su obični barkodovi idealni za osnovno označavanje proizvoda i jednostavno skeniranje u maloprodajnom okruženju, QR kodovi pružaju veći kapacitet pohrane podataka, bolju otpornost na oštećenja i veću raznolikost informacija. Odabir između njih ovisi o specifičnim potrebama i zahtjevima aplikacije.
+
+Razmatranje matematičke pozadine običnih barkodova i QR kodova pruža dublje razumijevanje načina na koji su ove dvije tehnologije konstruirane i funkcioniraju. Evo detaljnog pregleda matematičke pozadine oba sustava:
+
+Matematička pozadina običnih barkodova:
+Obični barkodovi, ili 1D barkodovi, koriste sekvencu crnih linija i bijelih prostora različitih širina za kodiranje informacija.
+Crne linije predstavljaju binarne jedinice (1), dok bijeli prostori predstavljaju binarne nule (0).
+Za kodiranje informacija koristi se jedan od nekoliko standardiziranih formata barkodova kao što su UPC, EAN ili Code128.
+Matematički algoritmi koriste se za dekodiranje barkodova, pri čemu se analizira širina i položaj crnih linija i bijelih prostora kako bi se odredila binarna sekvencija koja predstavlja podatke.
+Barkodovi se obično koriste za pohranu ograničenih količina informacija, obično do nekoliko stotina znakova, ovisno o specifičnom formatu barkoda.
+Matematička pozadina QR kodova:
+QR kodovi su dvodimenzionalni i sastoje se od crnih kvadrata i bijelih prostora unutar kvadratne matrice.
+Za generiranje QR kodova koriste se različiti matematički algoritmi koji omogućuju pouzdanu detekciju i korekciju grešaka.
+QR kodovi koriste napredne tehnike poput Reed-Solomon kodiranja za detekciju i ispravljanje grešaka u podacima, što ih čini otpornijima na oštećenja ili nedostatke u skeniranju.
+Podaci se kodiraju u binarnom obliku, a zatim se dijele u blokove kako bi se generirali crni i bijeli kvadrati unutar QR koda.
+QR kodovi mogu pohraniti širok spektar informacija, uključujući tekst, URL-ove, kontaktni podatci, Wi-Fi mreže i još mnogo toga.
+Velika prednost QR kodova je njihov veliki kapacitet pohrane podataka, koji može doseći tisuće znakova, ovisno o veličini i verziji QR koda.
+Zaključak:
+Matematička pozadina običnih barkodova i QR kodova razlikuje se u načinu na koji se podaci kodiraju i interpretiraju. Dok obični barkodovi koriste sekvencu crnih linija i bijelih prostora za predstavljanje binarnih informacija, QR kodovi koriste matematičke algoritme za generiranje crnih kvadrata i bijelih prostora unutar dvodimenzionalne matrice. QR kodovi imaju veći kapacitet pohrane podataka i bolju otpornost na oštećenja, što ih čini široko primjenjivima u različitim industrijama i aplikacijama.
+
+Izrada QR kodova uključuje upotrebu različitih matematičkih algoritama kako bi se generirala matrica crnih i bijelih kvadrata koja reprezentira podatke. Evo pregleda nekih ključnih matematičkih algoritama koji se koriste u izradi QR kodova:
+
+Kodiranje podataka:
+QR kodovi koriste različite načine kodiranja podataka, uključujući alfanumeričko, numeričko i binarno kodiranje.
+Alfanumeričko kodiranje koristi kombinaciju slova, brojeva i specijalnih znakova, dok numeričko kodiranje koristi samo brojeve.
+Binarno kodiranje podrazumijeva pretvaranje podataka u binarni format.
+Reed-Solomon kodiranje:
+Reed-Solomon kodiranje je napredna tehnika koja se koristi za detekciju i ispravljanje grešaka u podacima.
+QR kodovi koriste Reed-Solomon kodiranje kako bi bili otporni na oštećenja ili nedostatke prilikom skeniranja.
+Ovaj algoritam omogućuje QR kodovima da isprave određeni broj grešaka i da se podaci pouzdano očitavaju čak i ako je dio koda oštećen ili nedostaje.
+Segmentacija podataka:
+QR kodovi podatke dijele u različite segmente prema njihovoj vrsti (tekst, URL, numerički podaci, itd.).
+Svaki segment podataka ima svoj specifičan format koji određuje kako će biti kodiran unutar QR koda.
+Ovaj proces omogućuje QR kodovima da sadrže različite vrste informacija unutar jedne matrice.
+Generiranje crnih i bijelih kvadrata:
+Nakon kodiranja podataka, generira se crno-bijela matrica koja predstavlja QR kod.
+Algoritmi generiranja crnih i bijelih kvadrata određuju raspored kvadrata unutar matrice, kao i njihove veličine i pozicije.
+Ovi algoritmi uzimaju u obzir specifične zahtjeve verzije QR koda i koriste se za postizanje optimalne gustoće podataka unutar QR koda.
+Korekcija maskiranja:
+Nakon generiranja crno-bijele matrice, primjenjuje se proces maskiranja kako bi se osigurala ravnomjerna raspodjela crnih i bijelih kvadrata unutar QR koda.
+Postoje različite maske koje se mogu primijeniti na QR kod kako bi se postigla optimalna raspodjela kvadrata i povećala otpornost na oštećenja.
+
+Abstract:
+QR kodovi su sveprisutni u današnjem digitalnom svijetu, od naljepnica na proizvodima do elektroničkih boarding passova. Ovaj predavački seminar detaljno će istražiti matematičku pozadinu koja stoji iza ovih dvodimenzionalnih barkodova.
+
+U uvodnom dijelu seminara, istražit ćemo povijest QR kodova, od njihovog nastanka u Japanu 1994. godine pa sve do širokog usvajanja u svim sferama života diljem svijeta. Nakon toga, uputit ćemo se u osnove strukture QR kodova, istražujući kako su ti kvadratni mrežni obrasci sposobni nositi širok spektar informacija.
+
+Glavni dio seminara bavit će se dubljim uvidom u matematičke algoritme koji leže u osnovi QR kodova. Raspravit ćemo različite metode kodiranja podataka, uključujući alfanumeričko, numeričko i binarno kodiranje. Nakon toga, istražit ćemo napredne tehnike poput Reed-Solomon kodiranja, koje omogućuju QR kodovima detekciju i korekciju grešaka, čime se povećava njihova otpornost na oštećenja i greške pri čitanju.
+
+U završnom dijelu seminara, obradit ćemo praktične primjene matematičkih algoritama u generiranju QR kodova. Raspravit ćemo proces segmentacije podataka, generiranja crnih i bijelih kvadrata unutar QR koda te primjenu maskiranja radi poboljšanja kvalitete koda i otpornosti na oštećenja.
+
+Ovaj seminar omogućit će studentima i predstavnicima visokih učilišta dublje razumijevanje matematičke složenosti QR kodova i njihove primjene u suvremenom digitalnom društvu.
+
+
+Seminar: Matematička pozadina QR kodova
+
+I. Uvod
+
+Povijest QR kodova
+Nastanak i razvoj u Japanu 1994. godine
+Široko usvajanje u različitim industrijama diljem svijeta
+II. Struktura QR kodova
+
+Osnovni koncepti
+Dvodimenzionalni oblik
+Crni kvadrati i bijeli prostori unutar kvadratne matrice
+Kapacitet pohrane podataka
+Različite verzije QR kodova i njihovi kapaciteti
+Mogućnost pohrane različitih vrsta informacija
+III. Matematički algoritmi QR kodova
+
+Kodiranje podataka
+Alfanumeričko, numeričko i binarno kodiranje
+Reed-Solomon kodiranje
+Detekcija i korekcija grešaka
+Povećana otpornost na oštećenja i greške pri čitanju
+IV. Generiranje QR kodova
+
+Segmentacija podataka
+Podjela podataka u različite segmente prema vrsti informacija
+Generiranje crnih i bijelih kvadrata
+Algoritmi za generiranje rasporeda kvadrata unutar QR koda
+Korekcija maskiranja
+Primjena maski radi poboljšanja kvalitete koda i otpornosti na oštećenja
+V. Primjene QR kodova
+
+U različitim industrijama i sektorima
+Uloga QR kodova u digitalnoj komunikaciji i marketingu
+Primjeri praktične upotrebe QR kodova u svakodnevnom životu
+VI. Zaključak
+
+Rekapitulacija glavnih točaka seminara
+Naglasak na važnosti razumijevanja matematičke pozadine QR kodova za primjenu u suvremenom digitalnom društvu
+
+Seminar: Matematička pozadina QR kodova
+
+I. Uvod
+
+Pozdrav svim sudionicima seminara i dobrodošli na predavanje o matematičkoj pozadini QR kodova. Danas ćemo istražiti kako matematički algoritmi omogućuju funkcioniranje ovih sveprisutnih dvodimenzionalnih barkodova.
+
+Povijest QR kodova
+QR kodovi, ili Quick Response kodovi, prvi su put razvijeni u Japanu 1994. godine. Tvrtka Denso Wave, podružnica tvrtke Toyota, stvorila ih je kako bi olakšala brzo čitanje informacija u proizvodnom procesu automobila. Od tada su QR kodovi postali široko prihvaćeni i koriste se u različitim industrijama i aplikacijama diljem svijeta.
+
+II. Struktura QR kodova
+
+Osnovni koncepti
+QR kodovi su dvodimenzionalni, što znači da imaju širinu i visinu. Oni se sastoje od crnih kvadrata i bijelih prostora unutar kvadratne matrice. Velika prednost QR kodova je njihov kapacitet pohrane podataka, koji može varirati ovisno o verziji QR koda.
+
+Kapacitet pohrane podataka
+Verzije QR kodova variraju u veličini i kapacitetu pohrane podataka. QR kodovi mogu sadržavati različite vrste informacija, uključujući tekst, URL-ove, kontaktne podatke, Wi-Fi mreže i mnoge druge.
+
+III. Matematički algoritmi QR kodova
+
+Kodiranje podataka
+QR kodovi koriste različite metode kodiranja podataka, uključujući alfanumeričko, numeričko i binarno kodiranje. Ovo omogućuje QR kodovima da nose različite vrste informacija na učinkovit način.
+
+Reed-Solomon kodiranje
+Jedan od ključnih matematičkih algoritama koji se koristi u QR kodovima je Reed-Solomon kodiranje. Ova tehnika omogućuje QR kodovima detekciju i korekciju grešaka, što ih čini izuzetno otpornima na oštećenja ili greške pri čitanju.
+
+IV. Generiranje QR kodova
+
+Segmentacija podataka
+Podaci unutar QR kodova dijele se u različite segmente prema njihovoj vrsti informacija. Svaki segment ima svoj specifičan format koji određuje način na koji će biti kodiran unutar QR koda.
+
+Generiranje crnih i bijelih kvadrata
+Algoritmi generiranja crnih i bijelih kvadrata određuju raspored kvadrata unutar QR koda. Ovi algoritmi uzimaju u obzir verziju QR koda i kapacitet pohrane podataka kako bi postigli optimalnu gustoću podataka unutar QR koda.
+
+Korekcija maskiranja
+Nakon generiranja crno-bijele matrice, primjenjuje se proces maskiranja kako bi se osigurala ravnomjerna raspodjela crnih i bijelih kvadrata unutar QR koda. Ovo poboljšava kvalitetu koda i povećava njegovu otpornost na oštećenja.
+
+V. Primjene QR kodova
+
+U različitim industrijama i sektorima
+QR kodovi se koriste u različitim industrijama i sektorima, uključujući maloprodaju, logistiku, medicinu, turizam i još mnogo toga.
+
+Uloga QR kodova u digitalnoj komunikaciji i marketingu
+QR kodovi omogućuju brz i jednostavan pristup informacijama putem pametnih telefona i drugih mobilnih uređaja. Oni se često koriste u marketinške svrhe za povezivanje korisnika s dodatnim sadržajem, poput web stranica, kupona, promocija i sl.
+
+VI. Zaključak
+
+Na kraju, istaknut ćemo važnost razumijevanja matematičke pozadine QR kodova za primjenu u suvremenom digitalnom društvu. QR kodovi su postali ključan dio našeg svakodnevnog života, a razumijevanje kako funkcioniraju na matematičkoj razini omogućuje nam bolje iskorištavanje njihovih potencijala.
+
+DOBAR RAD:
+https://d1wqtxts1xzle7.cloudfront.net/51791265/Three_QR_Code-libre.pdf?1487081486=&response-content-disposition=inline%3B+filename%3DThree_QR_Code.pdf&Expires=1710713399&Signature=L4A7PdZYVPkkf5hDL0qIJVwyZK-CAq1qJ~a21GhEnclxGPGzf1ONVngII0E0H8eBBMJm630ulRcZfNl22GseAanXm~yzCAc2TKMioDsoVK0GqRl4-21kz3dkeEwMgV6Uv-o8-1RkpvfC33TxQy04ZPwNNZTbCUrZmwdOqCputAHrE7ygKMazyiEF1m9kf7tTO6UqjeV5-MYgQ25~ufL7kVcyFw0ELIZfS7LiyxfQ1B7h7PS4W~wgB3~kA-3fgl6no051ju7lQjLFZTLqxbF0F84--fzlBd9KUvqlqeW2bfl7dlbSKUQVQJZbCgBhl4rQAj8j8czIoLM8M2K~myqVJw__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
+Sažetak rada:
+Tradicijski QR kodovi koriste se za pohranu jednog skupa informacija, poput URL-a, teksta ili kontaktnih podataka. Međutim, u ovom radu predstavljen je novi pristup koji omogućuje stvaranje tri različita QR koda unutar jednog QR koda, nazvanog "Three QR Code".
+
+Three QR Code koristi matematičke algoritme kako bi se informacije podijelile i pohranile u tri odvojena QR koda unutar jednog QR koda. Ovaj pristup omogućuje višestruke informacije da budu pohranjene i prenesene putem jednog QR koda, što može biti korisno u različitim scenarijima kao što su marketing, logistika i sigurnost.
+
+Autori su implementirali Three QR Code sustav i proveli eksperimente kako bi pokazali njegovu učinkovitost i pouzdanost. rezultati su pokazali da je Three QR Code u stanju pouzdano prenositi tri različite skupove informacija unutar jednog QR koda, nudeći mogućnost efikasnog korištenja resursa i poboljšavajući funkcionalnost QR kodova u različitim aplikacijama.
+
+Ovo istraživanje otvara nove mogućnosti za korištenje QR kodova u različitim kontekstima i potiče daljnja istraživanja u području višestrukog kodiranja informacija unutar QR kodova.
+DOBAR ČLANAK:
+https://www.ijcst.org/Volume3/Issue7/p13_3_7.pdf
+Rad "Optimizacija Veličine QR Koda Koristeći Algoritme Genetskog Algoritma" istražuje primjenu genetskog algoritma za optimizaciju veličine QR kodova. Evo sažetka:
+
+Sažetak rada:
+QR kodovi su sveprisutni u današnjem društvu, koristeći se u različitim aplikacijama poput marketinga, identifikacije proizvoda, i financijskih transakcija. Jedan od izazova u korištenju QR kodova je određivanje optimalne veličine koja minimizira potrebnu količinu memorije i osigurava brzo i pouzdano očitavanje.
+
+U ovom istraživanju, autori predlažu korištenje genetskog algoritma za optimizaciju veličine QR kodova. Genetski algoritmi su metaheuristički algoritmi inspirirani procesima evolucije u prirodi, koji koriste princip selekcije, križanja i mutacije kako bi pretražili prostor rješenja i pronašli najbolje rješenje za dani problem.
+
+Autori su implementirali genetski algoritam koji optimizira veličinu QR koda prema zadanom skupu kriterija, uključujući minimalnu veličinu, maksimalnu brzinu skeniranja i minimalnu potrošnju memorije. Kroz niz eksperimenata na različitim skupovima podataka, pokazali su da njihov pristup rezultira značajnim smanjenjem veličine QR koda bez gubitka informacija ili performansi.
+
+Ovo istraživanje pruža uvid u primjenu genetskog algoritma u kontekstu optimizacije QR kodova, otvarajući mogućnosti za daljnje istraživanje i poboljšanja u ovom području.
+
+Ključne riječi:
+QR kodovi, genetski algoritmi, optimizacija veličine, metaheuristika, eksperimentalna analiza.
+
+
+NAJJAČI RAD DO SADA:
+https://books.google.hr/books?hl=hr&lr=&id=wHLXDgAAQBAJ&oi=fnd&pg=PR7&dq=qr+codes&ots=_OxhPy3Rd9&sig=IEo8VgVIHR8Dksf2T1kaKeTSApc&redir_esc=y#v=onepage&q=qr%20codes&f=false
+U knjizi "Handbook of Research on Emerging Trends and Technologies in Library and Information Science" detaljno se istražuju QR kodovi i njihova primjena u kontekstu informacijskih znanosti. Evo dubljeg uvida u najvažnije informacije:
+
+1. Definicija QR kodova:
+QR kodovi su dvodimenzionalni barkodovi koji su sposobni pohraniti veliku količinu informacija. Njihova struktura omogućuje brzo i jednostavno čitanje podataka putem pametnih telefona ili drugih mobilnih uređaja.
+
+2. Primjene QR kodova u knjižničarstvu:
+U knjižnicama, QR kodovi se koriste na različite načine kako bi se poboljšalo korisničko iskustvo i omogućio lakši pristup informacijama. Primjeri uključuju postavljanje QR kodova na oznake knjiga ili časopisa kako bi se korisnici brzo povezali s dodatnim resursima poput e-knjiga ili znanstvenih članaka.
+
+3. Integracija QR kodova u obrazovanje:
+U obrazovanju, QR kodovi se sve više koriste kao alat za poboljšanje učenja i poučavanja. Profesori ih koriste za dijeljenje dodatnih materijala ili resursa s studentima, dok studenti mogu koristiti QR kodove za brzi pristup informacijama putem mobilnih uređaja.
+
+4. Kritike i izazovi:
+Unatoč mnogim koristima, QR kodovi su suočeni s nekoliko izazova. Nedostatak standardizacije, potreba za pouzdanim pristupom internetu za pristup povezanim informacijama te nedostatak svijesti i obuke o QR kodovima među korisnicima samo su neki od izazova s kojima se susreću.
+
+5. Budućnost QR kodova:
+Unatoč izazovima, QR kodovi i dalje ostaju važan alat u informacijskim znanostima. Predviđa se da će se njihova primjena proširiti na nove područje kao što su virtualna i proširena stvarnost, gdje bi QR kodovi mogli biti korišteni za povezivanje stvarnog i digitalnog svijeta na inovativne načine.
+
+
+Je*eno dobro
+https://medium.com/@shashwatkdm/qr-codes-and-cryptography-4ab79d07f0ec
+Uloga kriptografije u QR kodovima:
+Generiranje digitalnih potpisa:
+QR kodovi koriste digitalne potpise za autentikaciju i provjeru integriteta podataka. Digitalni potpisi omogućuju primatelju QR koda da provjeri je li sadržaj QR koda autentičan i da nije bio promijenjen nakon generiranja.
+
+Različiti algoritmi kriptografije:
+Članak istražuje različite vrste algoritama kriptografije koje se mogu koristiti u QR kodovima, uključujući simetričnu kriptografiju, asimetričnu kriptografiju i kriptografske funkcije hashiranja. Svaki od ovih algoritama pruža različite razine sigurnosti i može se prilagoditi specifičnim potrebama i zahtjevima primjene QR koda.
+
+Sigurnosni rizici povezani s QR kodovima:
+Krađa identiteta:
+QR kodovi mogu biti meta za napade krađe identiteta, gdje zlonamjernici mogu stvoriti lažne QR kodove koji preusmjeravaju korisnike na phishing stranice ili šalju zlonamjerne datoteke.
+
+Phishing napadi:
+Zlonamjerni QR kodovi mogu preusmjeriti korisnike na lažne web stranice koje izgledaju autentično, ali zapravo prikupljaju osjetljive informacije poput korisničkih imena, lozinki ili bankovnih podataka.
+
+Manipulacija podacima:
+Napadači mogu manipulirati sadržajem QR koda kako bi promijenili informacije koje se prikazuju korisnicima, što može rezultirati obmanjujućim ili štetnim informacijama.
+
+Edukacija korisnika:
+Ključna je edukacija korisnika o potencijalnim sigurnosnim rizicima povezanim s QR kodovima i važnosti pažljivog postupanja s njima. Korisnici bi trebali biti svjesni mogućih prijetnji i naučiti kako prepoznati lažne QR kodove ili sumnjive web stranice.
+
+Zaključak:
+Članak naglašava važnost integracije kriptografskih tehnika u QR kodove radi poboljšanja sigurnosti i privatnosti podataka. Također ističe potrebu za educiranjem korisnika o potencijalnim sigurnosnim rizicima kako bi se osiguralo sigurno korištenje QR kodova u svakodnevnom životu.
+
+
+
+
+HMAC (Hash-based Message Authentication Code) je kriptografska tehnika koja se koristi za provjeru integriteta i autentičnosti podataka putem generiranja kratke poruke ili koda koji se može lako provjeriti.
+
+Osnovna ideja HMAC-a je kombiniranje tajnog ključa i poruke koja se želi zaštititi, te generiranje kriptografskog sažetka (hash) te kombinacije. Taj sažetak se zatim koristi kao autentikacijski kod ili HMAC, koji se može poslati zajedno s porukom. Prilikom primanja poruke, primalac može ponoviti isti postupak generiranja HMAC-a koristeći isti tajni ključ i usporediti ga s HMAC-om koji je primljen zajedno s porukom. Ako se HMAC-ovi podudaraju, to znači da poruka nije mijenjana tijekom prijenosa i da je poruka poslana od strane autentičnog pošiljatelja.
+
+HMAC pruža visoku razinu sigurnosti jer ovisi o kriptografskoj hash funkciji i tajnom ključu, što ga čini otpornim na napade kao što su prepravljanje poruke ili lažno predstavljanje pošiljatelja. HMAC se često koristi u različitim kriptografskim protokolima i sustavima za provjeru autentičnosti i integriteta podataka.
+
+import qrcode
+import hashlib
+import hmac
+
+def generate_qr_code(data, secret_key, file_path):
+    # Generiranje HMAC sa tajnim ključem
+    hmac_hash = hmac.new(secret_key.encode(), data.encode(), hashlib.sha256).hexdigest()
+
+    # Kreiranje QR koda koji sadrži podatke i HMAC vrijednost
+    qr_data = f"{data}\nHMAC:{hmac_hash}"
+    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
+    qr.add_data(qr_data)
+    qr.make(fit=True)
+
+    # Generiranje QR koda kao sliku i spremanje u datoteku
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.save(file_path)
+
+# Testiranje funkcije
+data_to_encode = "Igor Škorič je znatno superiorniji u odnosu na ostatak čovječanstva "
+secret_key = "TajniKljuč123"
+file_path = "qr_code.png"
+generate_qr_code(data_to_encode, secret_key, file_path)
+print(f"QR kod je spremljen u datoteku: {file_path}")
