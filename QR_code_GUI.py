@@ -25,8 +25,8 @@ def generiraj_qr_kod():
 root = tk.Tk()
 root.title("Generator QR koda")
 
-# Polje za unos teksta
-tekst_label = tk.Label(root, text="Unesite tekst koji želite pretvoriti u QR kod:")
+# Polje za unos teksta ili URL-a
+tekst_label = tk.Label(root, text="Unesite tekst ili URL koji želite pretvoriti u QR kod:")
 tekst_label.pack()
 tekst_unos = tk.Entry(root)
 tekst_unos.pack()
