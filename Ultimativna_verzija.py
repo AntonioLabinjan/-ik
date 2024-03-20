@@ -1,28 +1,11 @@
-# pip install python-barcode[pil]
-# obavezno treba instalirati i ovo gore, da moremo delat barkdove
 import tkinter as tk
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 import qrcode
 import barcode
-from barcode import get_barcode_class, errors
 from barcode.writer import ImageWriter
-from tkinter import messagebox
-from cryptography.fernet import Fernet
+from PIL import Image
 
-# Generiranje ključa za kriptiranje/dekriptiranje
-def generiraj_kljuc():
-    return Fernet.generate_key()
-
-# Kriptiranje teksta
-def kriptiraj_tekst(tekst, kljuc):
-    f = Fernet(kljuc)
-    return f.encrypt(tekst.encode())
-
-# Dekriptiranje teksta
-def dekriptiraj_tekst(tekst, kljuc):
-    f = Fernet(kljuc)
-    return f.decrypt(tekst).decode()
-
+# Generiranje barkoda
 def generiraj_barkod():
     tekst = unos_polje.get()
     tip_barkoda = vrsta_barkoda.get()
@@ -44,12 +27,8 @@ def generiraj_barkod():
         status_label.config(text="Greška pri dohvaćanju klase barkoda")
         return
 
-    # Kriptiranje teksta prije generiranja barkoda
-    kljuc = generiraj_kljuc()
-    kriptirani_tekst = kriptiraj_tekst(tekst, kljuc)
-
     # Generiranje barkoda i spremanje slike
-    kod_instance = kod(kriptirani_tekst, writer=ImageWriter())
+    kod_instance = kod(tekst, writer=ImageWriter())
     img = kod_instance.render()
 
     save_path = filedialog.asksaveasfilename(defaultextension=".png")
@@ -57,9 +36,7 @@ def generiraj_barkod():
         img.save(save_path)
         status_label.config(text="Barkod je uspješno spremljen u datoteku {}".format(save_path))
 
-    # Prikazivanje ključa korisniku
-    messagebox.showinfo("Ključ za dekriptiranje", f"Ključ: {kljuc.decode()}")
-
+# Generiranje QR koda
 def generiraj_qr_kod():
     tekst = tekst_unos.get()
 
@@ -67,17 +44,14 @@ def generiraj_qr_kod():
         status_label.config(text="Unesite tekst ili URL za generiranje QR koda")
         return
 
-    # Kriptiranje teksta prije generiranja QR koda
-    kljuc = generiraj_kljuc()
-    kriptirani_tekst = kriptiraj_tekst(tekst, kljuc)
-
+    # Generiranje QR koda i spremanje slike
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
         box_size=10,
         border=4,
     )
-    qr.add_data(kriptirani_tekst)
+    qr.add_data(tekst)
     qr.make(fit=True)
 
     img = qr.make_image(fill_color="black", back_color="white")
@@ -86,12 +60,9 @@ def generiraj_qr_kod():
         img.save(save_path)
         status_label.config(text=f"QR kod je uspješno spremljen u datoteku {save_path}")
 
-    # Prikazivanje ključa korisniku
-    messagebox.showinfo("Ključ za dekriptiranje", f"Ključ: {kljuc.decode()}")
-
 # Stvaranje Tkinter aplikacije
 root = tk.Tk()
-root.title("Generator kriptiranih barkoda i QR kodova")
+root.title("Generator barkoda i QR kodova")
 
 # Polje za unos teksta za barkod
 barkod_label = tk.Label(root, text="Unesite tekst za generiranje barkoda:")
