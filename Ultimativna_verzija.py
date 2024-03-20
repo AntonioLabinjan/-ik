@@ -1,24 +1,29 @@
 import tkinter as tk
 from tkinter import filedialog
-import barcode
-from barcode.writer import ImageWriter
 import qrcode
+import barcode
+from barcode import get_barcode_class, errors
+from barcode.writer import ImageWriter
+from tkinter import messagebox
 
 def generiraj_barkod():
     tekst = unos_polje.get()
     tip_barkoda = vrsta_barkoda.get()
 
-    # Odabir klase barkoda ovisno o odabranom tipu
-    if tip_barkoda == "EAN-13":
-        kod = barcode.get_barcode_class('ean13')
-    elif tip_barkoda == "Code128":
-        kod = barcode.get_barcode_class('code128')
-    else:
+    # Provjera je li odabrana podržana vrsta barkoda
+    if tip_barkoda.lower() not in ("ean13", "code128"):
         status_label.config(text="Nepodržana vrsta barkoda")
         return
 
-    # Provjera da li je klasa barkoda uspješno dohvaćena
-    if kod is None:
+    # Provjera je li unesen tekst za generiranje barkoda
+    if not tekst:
+        status_label.config(text="Unesite tekst za generiranje barkoda")
+        return
+
+    # Odabir klase barkoda ovisno o odabranom tipu
+    try:
+        kod = barcode.get_barcode_class(tip_barkoda.lower())
+    except barcode.errors.BarcodeNotFoundError:
         status_label.config(text="Greška pri dohvaćanju klase barkoda")
         return
 
@@ -33,6 +38,10 @@ def generiraj_barkod():
 
 def generiraj_qr_kod():
     tekst = tekst_unos.get()
+
+    if not tekst:
+        status_label.config(text="Unesite tekst ili URL za generiranje QR koda")
+        return
 
     qr = qrcode.QRCode(
         version=1,
@@ -63,8 +72,8 @@ unos_polje.pack()
 vrsta_barkoda_label = tk.Label(root, text="Odaberite vrstu barkoda:")
 vrsta_barkoda_label.pack()
 vrsta_barkoda = tk.StringVar()
-vrsta_barkoda.set("EAN-13")  # Postavljamo početnu vrijednost
-vrste_barkoda_optionmenu = tk.OptionMenu(root, vrsta_barkoda, "EAN-13", "Code128")
+vrsta_barkoda.set("ean13")  # Postavljamo početnu vrijednost
+vrste_barkoda_optionmenu = tk.OptionMenu(root, vrsta_barkoda, "ean13", "code128")
 vrste_barkoda_optionmenu.pack()
 
 # Gumb za generiranje barkoda
