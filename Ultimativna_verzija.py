@@ -97,3 +97,4 @@ status_label = tk.Label(root, text="")
 status_label.pack()
 
 root.mainloop()
+# OVO DELA SIGURNO
