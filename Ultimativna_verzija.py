@@ -1,3 +1,5 @@
+# pip install python-barcode[pil]
+# obavezno treba instalirati i ovo gore, da moremo delat barkdove
 import tkinter as tk
 from tkinter import filedialog
 import qrcode
