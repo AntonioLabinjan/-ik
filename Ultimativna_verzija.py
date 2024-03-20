@@ -62,7 +62,7 @@ def generiraj_qr_kod():
 
 # Stvaranje Tkinter aplikacije
 root = tk.Tk()
-root.title("Generator barkoda i QR kodova")
+root.title("QR-codes & barcodes")
 
 # Polje za unos teksta za barkod
 barkod_label = tk.Label(root, text="Unesite tekst za generiranje barkoda:")
@@ -97,4 +97,3 @@ status_label = tk.Label(root, text="")
 status_label.pack()
 
 root.mainloop()
-# OVO DELA SIGURNO
